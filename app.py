@@ -22,6 +22,7 @@ from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
 
+from presum_abs import presum_abs_summ
 # Sumy 
 def sumy_summary(docx):
 	parser = PlaintextParser.from_string(docx,Tokenizer("english"))
@@ -63,6 +64,7 @@ def analyze():
 		summary_reading_time = readingTime(final_summary)
 		end = time.time()
 		final_time = end-start
+		# print('summ : ',presum_abs_summ())
 	return render_template('index.html',ctext=rawtext,final_summary=final_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time)
 
 @app.route('/analyze_url',methods=['GET','POST'])
@@ -123,6 +125,16 @@ def comparer():
         
 		end = time.time()
 		final_time = end-start
+
+		# PreSum abs
+		clean_text = rawtext.replace('\n', '').replace('\r', '') # 清楚空格和换行
+		file = open('/home/ztl/nlp/PreSumm/raw_data/temp.raw_src','w')
+		file.write(clean_text)
+		print(clean_text)
+		file.close()
+		PreSum_abs = presum_abs_summ()
+		print(PreSum_abs)
+
 	return render_template('compare_summary.html',ctext=rawtext,final_summary_spacy=final_summary_spacy,final_summary_nltk=final_summary_nltk,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time,summary_reading_time_nltk=summary_reading_time_nltk,final_summary_sumbasic=final_summary_sumbasic,summary_reading_time_sumbasic=summary_reading_time_sumbasic,final_summary_textrank=final_summary_textrank,summary_reading_time_textrank=summary_reading_time_textrank,len_summ=len_summ,len_nltk=len_nltk,len_sumbasic=len_sumbasic,len_textrank=len_textrank)
 
 
