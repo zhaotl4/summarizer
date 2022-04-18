@@ -49,6 +49,14 @@ def get_text(url):
 def sumlen(summ):
 	res = len(re.findall(r'\w+', summ)) 
 	return res
+
+def _parse_str2doc_bert(text):
+        text = text.replace('\n', '').replace('\r', '')
+		# print('text',text)
+        article = re.split('.|!',text)
+        abstract = []
+        print(article)
+
 @app.route('/')
 def index():
 	return render_template('index.html')
@@ -59,11 +67,20 @@ def analyze():
 	start = time.time()
 	if request.method == 'POST':
 		rawtext = request.form['rawtext']
-		final_reading_time = readingTime(rawtext)
-		final_summary = main(rawtext)
-		summary_reading_time = readingTime(final_summary)
+		final_summary=textranksumm(rawtext) 
+		summary_reading_time=readingTime(final_summary)
+		#time_saved_textrank=final_reading_time-summary_reading_time_textrank
+		len_textrank=sumlen(final_summary)
+        
 		end = time.time()
 		final_time = end-start
+
+		final_reading_time = readingTime(rawtext)
+		# final_summary = main(rawtext)
+		# summary_reading_time = readingTime(final_summary)
+		# end = time.time()
+		# final_time = end-start
+		# _parse_str2doc_bert(rawtext)
 		# print('summ : ',presum_abs_summ())
 	return render_template('index.html',ctext=rawtext,final_summary=final_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time)
 
@@ -132,10 +149,10 @@ def comparer():
 		file.write(clean_text)
 		print(clean_text)
 		file.close()
-		PreSum_abs = presum_abs_summ()
+		PreSum_abs = presum_abs_summ().replace('<q>',',')
 		print(PreSum_abs)
 
-	return render_template('compare_summary.html',ctext=rawtext,final_summary_spacy=final_summary_spacy,final_summary_nltk=final_summary_nltk,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time,summary_reading_time_nltk=summary_reading_time_nltk,final_summary_sumbasic=final_summary_sumbasic,summary_reading_time_sumbasic=summary_reading_time_sumbasic,final_summary_textrank=final_summary_textrank,summary_reading_time_textrank=summary_reading_time_textrank,len_summ=len_summ,len_nltk=len_nltk,len_sumbasic=len_sumbasic,len_textrank=len_textrank)
+	return render_template('compare_summary.html',ctext=rawtext,final_summary_spacy=final_summary_spacy,final_summary_nltk=final_summary_nltk,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time,summary_reading_time_nltk=summary_reading_time_nltk,final_summary_sumbasic=PreSum_abs,summary_reading_time_sumbasic=summary_reading_time_sumbasic,final_summary_textrank=final_summary_textrank,summary_reading_time_textrank=summary_reading_time_textrank,len_summ=len_summ,len_nltk=len_nltk,len_sumbasic=len_sumbasic,len_textrank=len_textrank)
 
 
 
