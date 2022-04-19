@@ -25,7 +25,7 @@ def  textranksumm(text):
   nx_graph = nx.from_numpy_array(similarity_matrix)
   scores = nx.pagerank(nx_graph)
   top_sentence={sentence:scores[index] for index,sentence in enumerate(sentences)}
-  top=dict(sorted(top_sentence.items(), key=lambda x: x[1], reverse=True)[:4])
+  top=dict(sorted(top_sentence.items(), key=lambda x: x[1], reverse=True)[:3])
   x=""
   for sent in sentences:
     if sent in top.keys():
