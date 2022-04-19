@@ -1,9 +1,6 @@
 from __future__ import unicode_literals
 from flask import Flask,render_template,url_for,request
 
-from spacy_summarization import text_summarizer
-from gensim.summarization import summarize
-from nltk_summarization import nltk_summarizer
 from sumbasic_summ import main
 from textrank import textranksumm
 import time
@@ -23,7 +20,7 @@ from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
 
 from presum_abs import presum_abs_summ
-from pacsum_summary import bert_summ
+from pacsum_summary import bert_summ,tfidf_summ
 # Sumy 
 def sumy_summary(docx):
     parser = PlaintextParser.from_string(docx,Tokenizer("english"))
@@ -80,7 +77,6 @@ def analyze():
         final_reading_time = readingTime(rawtext)
 
         _save_str2doc_bert(rawtext)
-
         
     return render_template('index.html',ctext=rawtext,final_summary=final_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time)
 
@@ -110,35 +106,6 @@ def comparer():
         rawtext = request.form['rawtext']
         final_reading_time = readingTime(rawtext)
 
-        # Spacy  -> PacSum Bert
-        # final_summary_spacy = text_summarizer(rawtext)
-        # summary_reading_time = readingTime(final_summary_spacy)
-        # #time_saved=final_reading_time-summary_reading_time
-        # len_summ=sumlen(final_summary_spacy)
-        #Gensim Summarizer
-        final_summary_gensim = summarize(rawtext)
-        summary_reading_time_gensim = readingTime(final_summary_gensim)
-        #time_saved_gensim=final_reading_time-summary_reading_time_gensim
-        len_gensim=sumlen(final_summary_gensim)
-        
-        # NLTK
-        final_summary_nltk = nltk_summarizer(rawtext)
-        summary_reading_time_nltk = readingTime(final_summary_nltk)
-        #time_saved_nltk=final_reading_time-summary_reading_time_nltk
-        len_nltk=sumlen(final_summary_nltk)
-
-        # Sumy  
-        # final_summary_sumy = sumy_summary(rawtext)
-        # summary_reading_time_sumy = readingTime(final_summary_sumy) 
-        # #time_saved_sumy=final_reading_time-summary_reading_time_sumy
-        # len_sumy=sumlen(final_summary_sumy)
-
-        # #sumbasic -> PreSum abs
-        # final_summary_sumbasic=main(rawtext)
-        # summary_reading_time_sumbasic=readingTime(final_summary_sumbasic)
-        # #time_saved_sumbasic=final_reading_time-summary_reading_time_sumbasic
-        # len_sumbasic=sumlen(final_summary_sumbasic)
-
         #textrank
         final_summary_textrank=textranksumm(rawtext) 
         summary_reading_time_textrank=readingTime(final_summary_textrank)
@@ -159,13 +126,18 @@ def comparer():
         len_presum_abs = sumlen(PreSum_abs)
         # print(PreSum_abs)
 
-        # PacSum wiht Bert
+        # PacSum with Bert
         _save_str2doc_bert(rawtext)
         bert_summary = bert_summ()
         summary_reading_time = readingTime(bert_summary)
         len_sum_bert = sumlen(bert_summary)
 
-    return render_template('compare_summary.html',ctext=rawtext,final_summary_spacy=bert_summary,final_summary_nltk=final_summary_nltk,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time,summary_reading_time_nltk=summary_reading_time_nltk,final_summary_sumbasic=PreSum_abs,summary_reading_time_sumbasic=summary_reading_time_presum_abs,final_summary_textrank=final_summary_textrank,summary_reading_time_textrank=summary_reading_time_textrank,len_summ=len_sum_bert,len_nltk=len_nltk,len_sumbasic=len_presum_abs,len_textrank=len_textrank)
+        # PacSum with tfidf
+        tfidf_summary = tfidf_summ()
+        summary_reading_time_tfidf = readingTime(tfidf_summary)
+        len_sum_tfidf = sumlen(tfidf_summary)
+
+    return render_template('compare_summary.html',ctext=rawtext,final_summary_spacy=bert_summary,final_summary_nltk=tfidf_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time,summary_reading_time_nltk=summary_reading_time_tfidf,final_summary_sumbasic=PreSum_abs,summary_reading_time_sumbasic=summary_reading_time_presum_abs,final_summary_textrank=final_summary_textrank,summary_reading_time_textrank=summary_reading_time_textrank,len_summ=len_sum_bert,len_nltk=len_sum_tfidf,len_sumbasic=len_presum_abs,len_textrank=len_textrank)
 
 
 
