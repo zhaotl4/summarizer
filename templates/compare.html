@@ -5,46 +5,51 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html>
-	<head>
-		<title>Summarizer</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<!--<link rel="stylesheet" href="../static/cssn\main.css" type="text/css" rel="stylesheet" media="screen,projection"/>-->
-		<link rel="stylesheet" href="../static/css\custom.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-		<link rel="stylesheet" href="../static/cssn\main.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-		<link rel="stylesheet" href="../static/css\materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-		<link rel="stylesheet" href="../static/css\materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-	</head>
-	<body>
 
-		<!-- Header -->
-		<header id="header" style="border:#1c1c1c; border-width:3px; border-style:solid;background-color: white;">
-			<div class="inner">
-				<a href="{{url_for('home')}}" class="logo"><img src="{{url_for('static', filename='images/logo.png')}}" style="width:64px;height:64px;" >extractive text summarizer</a>
-				<nav id="nav">
-					<a href="{{url_for('home')}}">新闻摘要</a>
-					<a href="{{url_for('summary')}}">summarize</a>
-					<a href="{{url_for('compare_summary')}}">Compare</a>
-				</nav>
-			</div>
-		</header>
-		<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+<head>
+	<title>Summarizer</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!--<link rel="stylesheet" href="../static/cssn\main.css" type="text/css" rel="stylesheet" media="screen,projection"/>-->
+	<link rel="stylesheet" href="../static/css\custom.css" type="text/css" rel="stylesheet" media="screen,projection" />
+	<link rel="stylesheet" href="../static/cssn\main.css" type="text/css" rel="stylesheet" media="screen,projection" />
+	<link rel="stylesheet" href="../static/css\materialize.css" type="text/css" rel="stylesheet"
+		media="screen,projection" />
+	<link rel="stylesheet" href="../static/css\materialize.min.css" type="text/css" rel="stylesheet"
+		media="screen,projection" />
+</head>
 
-		<!-- Main -->
-			<section id="main">
-				<div class="inner">
-					<header class="major special">
-												
-					</header>
+<body>
 
-					
-					
+	<!-- Header -->
+	<header id="header" style="border:#1c1c1c; border-width:3px; border-style:solid;background-color: white;">
+		<div class="inner">
+			<a href="{{url_for('home')}}" class="logo"><img src="{{url_for('static', filename='images/logo.png')}}"
+					style="width:64px;height:64px;">extractive text summarizer</a>
+			<nav id="nav">
+				<a href="{{url_for('home')}}">新闻摘要</a>
+				<a href="{{url_for('summary')}}">summarize</a>
+				<a href="{{url_for('compare_summary')}}">Compare</a>
+			</nav>
+		</div>
+	</header>
+	<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 
-									
-								</div>
-							</div>
+	<!-- Main -->
+	<section id="main">
+		<div class="inner">
+			<header class="major special">
 
-							<!--<h4>Actions</h4>
+			</header>
+
+
+
+
+
+		</div>
+		</div>
+
+		<!--<h4>Actions</h4>
 							<ul class="actions">
 								<li><a href="#" class="button special">Special</a></li>
 								<li><a href="#" class="button">Default</a></li>
@@ -87,37 +92,39 @@
 							</div>
 						</section>-->
 
-					
-					<!-- Buttons -->
-					<!-- Start -->
-<div class="container">
-    <div class="section">
-       
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="input-field col s12 m10">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">compare</i></h2>
-           <form method="POST" action="/comparer">
-         <!-- <textarea name="rawtext" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Text Here"></textarea> -->
-          <textarea id="textarea1" name="rawtext" class="materialize-textarea"></textarea>
-          <label for="textarea1">请输入新闻文本</label>
-         <br/>
-         <button class="btn btn-small waves-effect waves-light  light-blue lighten-1" type="reset">清除</button>
-          <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">摘要</button>
-          
-        </form>
-          </div>
-        </div>
 
-      </div>
+		<!-- Buttons -->
+		<!-- Start -->
+		<div class="container">
+			<div class="section">
 
-    </div>
-  </div>
-  <!-- End -->
-	
-					
-					<!-- Form 
+				<!--   Icon Section   -->
+				<div class="row">
+					<div class="input-field col s12 m10">
+						<div class="icon-block">
+							<h2 class="center brown-text"><i class="material-icons">compare</i></h2>
+							<form method="POST" action="/comparer">
+								<!-- <textarea name="rawtext" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Text Here"></textarea> -->
+								<textarea id="textarea1" name="rawtext" class="materialize-textarea"></textarea>
+								<label for="textarea1">请输入新闻文本</label>
+								<br />
+								<button class="btn btn-small waves-effect waves-light  light-blue lighten-1"
+									type="reset">清除</button>
+								<button class="btn btn-small waves-effect waves-light purple lighten-1"
+									type="submit">摘要</button>
+
+							</form>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!-- End -->
+
+
+		<!-- Form 
 						<section>
 							<h3>Choose Algo</h3>
 							<form method="post" action="#">
@@ -151,7 +158,7 @@
 										<input type="radio" id="priority-high" name="priority">
 										<label for="priority-high">High Priority</label>
 									</div>-->
-									<!--<div class="6u 12u$(small)">
+		<!--<div class="6u 12u$(small)">
 										<input type="checkbox" id="copy" name="copy">
 										<label for="copy">Spacy</label>
 									</div>
@@ -182,102 +189,121 @@
 							</form>
 						</section>-->
 
-						
 
-  <!-- Results -->
-  <section class="section section-solutions-about grey lighten-3 ">
- <div class="container">
-      <div class="row">
-        <div class="col s12 m8">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">compare</i></h2>
-            <h5 class="center">原始文本</h5>
 
-            <p class="light">{{ctext}}</p>
-            <div class="alert alert-info" role="alert"><!--<p>耗费时间: <span style="color:#0091EA;">{{ final_time }} </span></p>--><br/>
-              <p>读取时间: <span style="color:#0091EA;">{{ final_reading_time }}secs </span></p>
-        </div>
-          </div>
-        </div>
-      </div>
+		<!-- Results -->
+		<section class="section section-solutions-about grey lighten-3 ">
+			<div class="container">
+				<div class="row">
+					<div class="col s12 m8">
+						<div class="icon-block">
+							<h2 class="center brown-text"><i class="material-icons">compare</i></h2>
+							<h5 class="center">原始文本</h5>
 
-  
-  </div>
-</section>
+							<p class="light">{{ctext}}</p>
+							<div class="alert alert-info" role="alert">
+								<!--<p>耗费时间: <span style="color:#0091EA;">{{ final_time }} </span></p>--><br />
+								<p>读取时间: <span style="color:#0091EA;">{{ final_reading_time }}secs </span></p>
+							</div>
+						</div>
+					</div>
+				</div>
 
-    <!-- SECTION: RESULTS FOR DIFFERENT SUMMARIZERS -->
-	<section class="section section-solutions-about grey lighten-3 ">
-		<div class="container">
-		  <div class="row">
-		
-			<div class="col s12 m12 offset-m1">
-			  <div class="row">
-				<div class="col s12">
-				  <ul class="tabs">
-					<li class="tab col s3">
-					  <a href="#tab1" class="blue-text">PacSum with Bert</a>
-					</li>
-					<li class="tab col s3">
-					  <a href="#tab2" class="blue-text">PacSum with tfidf</a>
-					</li>
-					<li class="tab col s3">
-					  <a href="#tab3" class="blue-text">presum</a>
-					</li>
-					<li class="tab col s3">
-					  <a href="#tab4" class="blue-text">text Rank</a>
-					</li>
-				
-				  </ul>
-				</div>
-				<div id="tab1" class="col s12">
-				  <h5>PacSum with Bert</h5>
-				  <div class="" ><p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time }}secs  </span></p>
-					<p>摘要长度: <span style="color:#0091EA;">{{ len_summ}}   </span></p>
-				  </div>
-				  <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ final_summary_spacy }}</p></div>
-			  
-					
-				</div>
-				<div id="tab2" class="col s12">
-				  <h5>PacSum with tfidf</h5>
-				  
-					<div class=""><p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time_nltk }}secs   </span></p>
-					  <p>摘要长度: <span style="color:#0091EA;">{{ len_nltk}}   </span></p>
-					</div>              <div class="grey lighten-2"><p style="padding:5px;font-size:14px;">{{ final_summary_nltk }}</p></div>
-			 
-				</div>
-				<div id="tab3" class="col s12">
-				  <h5>presum</h5>
-					 <div class=""><p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time_sumbasic}}secs   </span></p>
-					  <p>摘要长度: <span style="color:#0091EA;">{{ len_sumbasic}}   </span></p>
-				  </div>
-				  <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ final_summary_sumbasic }}</p></div>
-			  
-				
-				</div>
-				<div id="tab4" class="col s12">
-				  <h5>text rank</h5>
-				  
-					<div class=""><p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time_textrank}}secs   </span></p>
-					  <p>摘要长度: <span style="color:#0091EA;">{{ len_textrank}}   </span></p>
-					</div>              <div class="grey lighten-2"><p style="padding:5px;font-size:14px;">{{ final_summary_textrank }}</p></div>
-			 
-				</div>
-		   
-			  </div>
+
 			</div>
-		  </div>
-		</div>
-	  </section>
+		</section>
+
+		<!-- SECTION: RESULTS FOR DIFFERENT SUMMARIZERS -->
+		<section class="section section-solutions-about grey lighten-3 ">
+			<div class="container">
+				<div class="row">
+
+					<div class="col s12 m12 offset-m1">
+						<div class="row">
+							<div class="col s12">
+								<ul class="tabs">
+									<li class="tab col s3">
+										<a href="#tab1" class="blue-text">PacSum with Bert</a>
+									</li>
+									<li class="tab col s3">
+										<a href="#tab2" class="blue-text">PacSum with tfidf</a>
+									</li>
+									<li class="tab col s3">
+										<a href="#tab3" class="blue-text">presum</a>
+									</li>
+									<li class="tab col s3">
+										<a href="#tab4" class="blue-text">text Rank</a>
+									</li>
+
+								</ul>
+							</div>
+							<div id="tab1" class="col s12">
+								<h5>PacSum with Bert</h5>
+								<div class="">
+									<p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time }}secs </span></p>
+									<p>摘要长度: <span style="color:#0091EA;">{{ len_summ}} </span></p>
+								</div>
+								<div class="grey lighten-1">
+									<p style="padding:5px;font-size:14px;">{{ final_summary_spacy }}</p>
+								</div>
 
 
-			
+							</div>
+							<div id="tab2" class="col s12">
+								<h5>PacSum with tfidf</h5>
+
+								<div class="">
+									<p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time_nltk }}secs </span>
+									</p>
+									<p>摘要长度: <span style="color:#0091EA;">{{ len_nltk}} </span></p>
+								</div>
+								<div class="grey lighten-2">
+									<p style="padding:5px;font-size:14px;">{{ final_summary_nltk }}</p>
+								</div>
+
+							</div>
+							<div id="tab3" class="col s12">
+								<h5>presum</h5>
+								<div class="">
+									<p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time_sumbasic}}secs </span>
+									</p>
+									<p>摘要长度: <span style="color:#0091EA;">{{ len_sumbasic}} </span></p>
+								</div>
+								<div class="grey lighten-1">
+									<p style="padding:5px;font-size:14px;">{{ final_summary_sumbasic }}</p>
+								</div>
+
+
+							</div>
+							<div id="tab4" class="col s12">
+								<h5>text rank</h5>
+
+								<div class="">
+									<p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time_textrank}}secs </span>
+									</p>
+									<p>摘要长度: <span style="color:#0091EA;">{{ len_textrank}} </span></p>
+								</div>
+								<div class="grey lighten-2">
+									<p style="padding:5px;font-size:14px;">{{ final_summary_textrank }}</p>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+
 
 		<!-- Scripts -->
-			<script src="../static/jsn/jquery.min.js"></script>
-			<script src="../static/jsn/skel.min.js"></script>
-			<script src="../static/jsn/util.js"></script>
-			<script src="../static/jsn/main.js"></script>
+		<script src="../static/jsn/jquery.min.js"></script>
+		<script src="../static/jsn/skel.min.js"></script>
+		<script src="../static/jsn/util.js"></script>
+		<script src="../static/jsn/main.js"></script>
 
-	</body>
+</body>
+
 </html>

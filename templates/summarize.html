@@ -5,31 +5,35 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html>
-	<head>
-		<title>Summarizer</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet"href="{{url_for('static', filename='cssn/main.css')}}"type="text/css" rel="stylesheet" media="screen,projection"/>
-    
-	</head>
-	<body>
 
-		<!-- Header -->
-		<header id="header" style="border:#1c1c1c; border-width:3px; border-style:solid;">
-      <div class="inner">
-        <a href="{{url_for('home')}}" class="logo"><img src="{{url_for('static', filename='images/logo.png')}}" style="width:64px;height:64px;" >extractive text summarizer</a>
-        <nav id="nav">
-          <a href="{{url_for('home')}}">新闻摘要</a>
-          <a href="{{url_for('summary')}}">summarize</a>
-          <a href="{{url_for('compare_summary')}}">Compare</a>
-        </nav>
-      </div>
-    </header>
-    <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+<head>
+  <title>Summarizer</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="{{url_for('static', filename='cssn/main.css')}}" type="text/css" rel="stylesheet"
+    media="screen,projection" />
 
-    <!-- Start of Main Section -->
-    
-<!--<div id="Summarization" class="tabcontent">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header id="header" style="border:#1c1c1c; border-width:3px; border-style:solid;">
+    <div class="inner">
+      <a href="{{url_for('home')}}" class="logo"><img src="{{url_for('static', filename='images/logo.png')}}"
+          style="width:64px;height:64px;">extractive text summarizer</a>
+      <nav id="nav">
+        <a href="{{url_for('home')}}">新闻摘要</a>
+        <a href="{{url_for('summary')}}">summarize</a>
+        <a href="{{url_for('compare_summary')}}">Compare</a>
+      </nav>
+    </div>
+  </header>
+  <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+  <!-- Start of Main Section -->
+
+  <!--<div id="Summarization" class="tabcontent">
       <div class="input-group textarea-text">
           <input type="text" id="summarization-url" class="form-control custom-control text-for-analysis" placeholder="Enter you text" aria-describedby="basic-addon2">
           <div>
@@ -52,25 +56,26 @@
       <div id="sm-results">
       </div>-->
 
- <div class="container">
+  <div class="container">
     <div class="section">
-       
+
       <!--   Icon Section   -->
       <div class="row">
         <div class="input-field col s12 m10">
           <div class="icon-block">
-            <h2 style="color:black;font-style: normal;" class="center brown-text"><i class="material-icons">Upload your text</i></h2>
-           <form method="POST" action="/analyze">
-         <!-- <textarea name="rawtext" cols="100" rows="10" class="form-control" required="true" placeholder="Enter Text Here" ></textarea> -->
-          <textarea id="textarea1" name="rawtext" class="materialize-textarea"></textarea>
-          <label for="textarea1">请输入新闻文本</label>
-         <!--<div id="textarea" contenteditable name="rawtext" cols="16" rows="7" class="form-control" required="true" placeholder="Enter Text Here" >
+            <h2 style="color:black;font-style: normal;" class="center brown-text"><i class="material-icons">Upload your
+                text</i></h2>
+            <form method="POST" action="/analyze">
+              <!-- <textarea name="rawtext" cols="100" rows="10" class="form-control" required="true" placeholder="Enter Text Here" ></textarea> -->
+              <textarea id="textarea1" name="rawtext" class="materialize-textarea"></textarea>
+              <label for="textarea1">请输入新闻文本</label>
+              <!--<div id="textarea" contenteditable name="rawtext" cols="16" rows="7" class="form-control" required="true" placeholder="Enter Text Here" >
   
           <img contenteditable="false" src="{{url_for('static', filename='images/upload.png')}}" width="120" height="100"/>
           
           </div>-->
-         <br/>
-         <!--<div>
+              <br />
+              <!--<div>
           <select id="summary-size" class="summary-options">
               <option value="20">Summary Size: 20%</option>
               <option value="10">10%</option>
@@ -81,25 +86,26 @@
               <option value="70">70%</option>
           </select>
 </div>-->
-         <button class="btn btn-small waves-effect waves-light light-blue lighten-1" type="reset">清除</button>
-          <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">摘要</button>
-          
-        </form>
+              <button class="btn btn-small waves-effect waves-light light-blue lighten-1" type="reset">清除</button>
+              <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">摘要</button>
+
+            </form>
           </div>
         </div>
 
       </div>
 
-        <div class="row">
+      <div class="row">
         <div class="input-field col s12 m10">
           <div class="icon-block">
-            <h2  style="color:black; font-style: normal;" class="center brown-text"><i class="material-icons">Enter URL</i></h2>
-           <form method="POST" action="/analyze_url">
-         <input type="text" name="raw_url" placeholder="Enter URL Here" required="true" size="100">
-         <button class="btn btn-small waves-effect waves-light light-blue lighten-1" type="reset">清除</button>
-          <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">摘要</button>
-          
-        </form>
+            <h2 style="color:black; font-style: normal;" class="center brown-text"><i class="material-icons">Enter
+                URL</i></h2>
+            <form method="POST" action="/analyze_url">
+              <input type="text" name="raw_url" placeholder="Enter URL Here" required="true" size="100">
+              <button class="btn btn-small waves-effect waves-light light-blue lighten-1" type="reset">清除</button>
+              <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">摘要</button>
+
+            </form>
           </div>
         </div>
 
@@ -111,17 +117,17 @@
 
   <!-- Result Display-->
   <section class="section section-solutions-about grey darken-2">
- <div class="container white-text">
- 
+    <div class="container white-text">
+
       <!--   Icon Section   -->
       <div class="row">
         <div class="col s12 m6">
           <div class="icon-block">
             <h2 class="center brown-text"></h2>
             <h5 class="center" style="color:black;font-style:normal;">原始文本</h5>
-             <p>读取时间: <span style="color:#0091EA;">{{ final_reading_time }}secs  </span></p>
+            <p>读取时间: <span style="color:#0091EA;">{{ final_reading_time }}secs </span></p>
             <p class="light">{{ctext}}</p>
-          <!--  <div class="alert alert-info" role="alert"><p>耗费时间: <span style="color:#0091EA;">{{ final_time }} mins </span></p><br/>
+            <!--  <div class="alert alert-info" role="alert"><p>耗费时间: <span style="color:#0091EA;">{{ final_time }} mins </span></p><br/>
              
         </div>-->
           </div>
@@ -131,32 +137,33 @@
           <div class="icon-block">
             <h2 class="center brown-text"></h2>
             <h5 class="center" style="color: black;font-style: normal;">生成摘要</h5>
-              <div class="" role="alert">
-              <p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time }}secs  </span></p>
-        </div>
+            <div class="" role="alert">
+              <p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time }}secs </span></p>
+            </div>
             <p class="light">{{ final_summary }}</p>
-          
+
           </div>
         </div>
 
       </div>
 
-  
+
+    </div>
+  </section>
+
+
+
+
+
   </div>
-</section>
 
 
-  
-  
+  <!-- Scripts -->
+  <script src="../static/jsn\jquery.min.js"></script>
+  <script src="../static/jsn\skel.min.js"></script>
+  <script src="../static/jsn\util.js"></script>
+  <script src="../static/jsn\main.js"></script>
 
-        </div>
+</body>
 
-		
-		<!-- Scripts -->
-			<script src="../static/jsn\jquery.min.js"></script>
-			<script src="../static/jsn\skel.min.js"></script>
-			<script src="../static/jsn\util.js"></script>
-			<script src="../static/jsn\main.js"></script>
-
-	</body>
 </html>

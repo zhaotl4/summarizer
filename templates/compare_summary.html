@@ -1,88 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>新闻文本摘要</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 </head>
-<body><div class="navbar-fixed">
-   <nav class="fafafa grey lighten-5" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">新闻文本摘要</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="{{url_for('index')}}">新闻摘要</a></li>
-         <li><a href="{{url_for('compare_summary')}}">模型比较</a></li>
-         <li><a href="{{url_for('index')}}">实验结果</a></li>
-         <li><a href="{{url_for('head_view_v2')}}">可视化</a></li>
-      </ul>
 
-      
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-</div>
-	<ul id="nav-mobile" class="sidenav">
-        <li><a href="{{url_for('index')}}">新闻摘要</a></li>
-         <li><a href="{{url_for('compare_summary')}}">Compare</a></li>
-         <li><a href="#contactme">此网站</a></li>
-      </ul>
-<!--Slider -->
- <section class="slider">
-  <div id="index-banner" class="parallax-container">
-     <ul class="slides">
-      <li>
-        <img src="../static/images/background.jpg" alt="Unsplashed background img 1" alt="">
-        <div class="caption center-align">
-          <h2>新闻文本摘要应用</h2>
-          <h5 class="light grey-text text-lighten-3 hide-on-small-only">
-           使用Bert,Transformer,TextRank
-          </h5>
-         
-           <div class="row center">
-          <a href="{{url_for('index')}}" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">刷新</a>
-        </div>
-        </div>
-      </li>
-      <li>
-       <img src="../static/images/pic11.jpg" alt="Unsplashed background img 1">
-        <div class="caption left-align">
-          <h2>新闻文本摘要</h2>
-          <h5 class="light grey-text text-lighten-3 hide-on-small-only">
-           基于深度学习和自然语言处理
-          </h5>
-          <a href="#aboutapp" class="btn btn-large waves-effect waves-light light-blue lighten-1">了解更多</a>
-        </div>
-      </li>
-   
-    </ul>
+<body>
+  <div class="navbar-fixed">
+    <nav class="fafafa grey lighten-5" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="#" class="brand-logo">新闻文本摘要</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="{{url_for('index')}}">新闻摘要</a></li>
+          <li><a href="{{url_for('compare_summary')}}">模型比较</a></li>
+          <li><a href="{{url_for('index')}}">实验结果</a></li>
+          <li><a href="{{url_for('head_view_v2')}}">可视化</a></li>
+        </ul>
+
+
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
   </div>
-</section>
+  <ul id="nav-mobile" class="sidenav">
+    <li><a href="{{url_for('index')}}">新闻摘要</a></li>
+    <li><a href="{{url_for('compare_summary')}}">Compare</a></li>
+    <li><a href="#contactme">此网站</a></li>
+  </ul>
+  <!--Slider -->
+  <section class="slider">
+    <div id="index-banner" class="parallax-container">
+      <ul class="slides">
+        <li>
+          <img src="../static/images/background.jpg" alt="Unsplashed background img 1" alt="">
+          <div class="caption center-align">
+            <h2>新闻文本摘要应用</h2>
+            <h5 class="light grey-text text-lighten-3 hide-on-small-only">
+              使用Bert,Transformer,TextRank
+            </h5>
 
-<!-- Start -->
- <div class="container">
+            <div class="row center">
+              <a href="{{url_for('index')}}" id="download-button"
+                class="btn-large waves-effect waves-light blue lighten-1">刷新</a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <img src="../static/images/pic11.jpg" alt="Unsplashed background img 1">
+          <div class="caption left-align">
+            <h2>新闻文本摘要</h2>
+            <h5 class="light grey-text text-lighten-3 hide-on-small-only">
+              基于深度学习和自然语言处理
+            </h5>
+            <a href="#aboutapp" class="btn btn-large waves-effect waves-light light-blue lighten-1">了解更多</a>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- Start -->
+  <div class="container">
     <div class="section">
-       
+
       <!--   Icon Section   -->
       <div class="row">
         <div class="input-field col s12 m10">
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">compare</i></h2>
-           <form method="POST" action="/comparer">
-         <!-- <textarea name="rawtext" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Text Here"></textarea> -->
-          <textarea id="textarea1" name="rawtext" class="materialize-textarea"></textarea>
-          <label for="textarea1">请输入新闻文本</label>
-         <br/>
-         <button class="btn btn-small waves-effect waves-light  light-blue lighten-1" type="reset">清除</button>
-          <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">摘要</button>
-          
-        </form>
+            <form method="POST" action="/comparer">
+              <!-- <textarea name="rawtext" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Text Here"></textarea> -->
+              <textarea id="textarea1" name="rawtext" class="materialize-textarea"></textarea>
+              <label for="textarea1">请输入新闻文本</label>
+              <br />
+              <button class="btn btn-small waves-effect waves-light  light-blue lighten-1" type="reset">清除</button>
+              <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">摘要</button>
+
+            </form>
           </div>
         </div>
 
@@ -94,7 +99,7 @@
 
   <!-- Results -->
   <section class="section section-solutions-about grey lighten-3 ">
- <div class="container">
+    <div class="container">
       <div class="row">
         <div class="col s12 m8">
           <div class="icon-block">
@@ -102,91 +107,107 @@
             <h5 class="center">原始文本</h5>
 
             <p class="light">{{ctext}}</p>
-            <div class="alert alert-info" role="alert"><p>耗费时间: <span style="color:#0091EA;">{{ final_time }} </span></p><br/>
+            <div class="alert alert-info" role="alert">
+              <p>耗费时间: <span style="color:#0091EA;">{{ final_time }} </span></p><br />
               <p>读取时间: <span style="color:#0091EA;">{{ final_reading_time }} </span></p>
-        </div>
-          </div>
-        </div>
-      </div>
-
-  
-  </div>
-</section>
-
-    <!-- SECTION: RESULTS FOR DIFFERENT SUMMARIZERS -->
-    <section class="section section-solutions-about grey lighten-3 ">
-      <div class="container">
-        <div class="row">
-      
-          <div class="col s12 m12 offset-m1">
-            <div class="row">
-              <div class="col s12">
-                <ul class="tabs">
-                  <li class="tab col s3">
-                    <a href="#tab1" class="blue-text">PacSum with Bert</a>
-                  </li>
-                  <li class="tab col s3">
-                    <a href="#tab2" class="blue-text">PacSum with tfidf</a>
-                  </li>
-                  <li class="tab col s3">
-                    <a href="#tab3" class="blue-text">PreSum</a>
-                  </li>
-                  <li class="tab col s3">
-                    <a href="#tab4" class="blue-text">text Rank</a>
-                  </li>
-              
-                </ul>
-              </div>
-              <div id="tab1" class="col s12">
-                <h5>PACSUM WITH BERT</h5>
-                <div class="" ><p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time }} min  </span></p>
-                  <p>摘要长度: <span style="color:#0091EA;">{{ len_summ}}   </span></p>
-                </div>
-                <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ final_summary_spacy }}</p></div>
-            
-                  
-              </div>
-              <div id="tab2" class="col s12">
-                <h5>PACSUM WITH TFIDF</h5>
-                
-                  <div class=""><p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time_nltk }}  min </span></p>
-                    <p>摘要长度: <span style="color:#0091EA;">{{ len_nltk}}   </span></p>
-                  </div>              <div class="grey lighten-2"><p style="padding:5px;font-size:14px;">{{ final_summary_nltk }}</p></div>
-           
-              </div>
-              <div id="tab3" class="col s12">
-                <h5>PRESUM</h5>
-                   <div class=""><p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time_sumbasic}} min  </span></p>
-                    <p>摘要长度: <span style="color:#0091EA;">{{ len_sumbasic}}   </span></p>
-                </div>
-                <div class="grey lighten-1"><p style="padding:5px;font-size:14px;">{{ final_summary_sumbasic }}</p></div>
-            
-              
-              </div>
-              <div id="tab4" class="col s12">
-                <h5>TEXTRANK</h5>
-                
-                  <div class=""><p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time_textrank}}  min </span></p>
-                    <p>摘要长度: <span style="color:#0091EA;">{{ len_textrank}}   </span></p>
-                  </div>              <div class="grey lighten-2"><p style="padding:5px;font-size:14px;">{{ final_summary_textrank }}</p></div>
-           
-              </div>
-         
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-   <footer class="page-footer grey darken-4">
+
+    </div>
+  </section>
+
+  <!-- SECTION: RESULTS FOR DIFFERENT SUMMARIZERS -->
+  <section class="section section-solutions-about grey lighten-3 ">
+    <div class="container">
+      <div class="row">
+
+        <div class="col s12 m12 offset-m1">
+          <div class="row">
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col s3">
+                  <a href="#tab1" class="blue-text">PacSum with Bert</a>
+                </li>
+                <li class="tab col s3">
+                  <a href="#tab2" class="blue-text">PacSum with tfidf</a>
+                </li>
+                <li class="tab col s3">
+                  <a href="#tab3" class="blue-text">PreSum</a>
+                </li>
+                <li class="tab col s3">
+                  <a href="#tab4" class="blue-text">text Rank</a>
+                </li>
+
+              </ul>
+            </div>
+            <div id="tab1" class="col s12">
+              <h5>PACSUM WITH BERT</h5>
+              <div class="">
+                <p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time }} min </span></p>
+                <p>摘要长度: <span style="color:#0091EA;">{{ len_summ}} </span></p>
+              </div>
+              <div class="grey lighten-1">
+                <p style="padding:5px;font-size:14px;">{{ final_summary_spacy }}</p>
+              </div>
+
+
+            </div>
+            <div id="tab2" class="col s12">
+              <h5>PACSUM WITH TFIDF</h5>
+
+              <div class="">
+                <p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time_nltk }} min </span></p>
+                <p>摘要长度: <span style="color:#0091EA;">{{ len_nltk}} </span></p>
+              </div>
+              <div class="grey lighten-2">
+                <p style="padding:5px;font-size:14px;">{{ final_summary_nltk }}</p>
+              </div>
+
+            </div>
+            <div id="tab3" class="col s12">
+              <h5>PRESUM</h5>
+              <div class="">
+                <p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time_sumbasic}} min </span></p>
+                <p>摘要长度: <span style="color:#0091EA;">{{ len_sumbasic}} </span></p>
+              </div>
+              <div class="grey lighten-1">
+                <p style="padding:5px;font-size:14px;">{{ final_summary_sumbasic }}</p>
+              </div>
+
+
+            </div>
+            <div id="tab4" class="col s12">
+              <h5>TEXTRANK</h5>
+
+              <div class="">
+                <p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time_textrank}} min </span></p>
+                <p>摘要长度: <span style="color:#0091EA;">{{ len_textrank}} </span></p>
+              </div>
+              <div class="grey lighten-2">
+                <p style="padding:5px;font-size:14px;">{{ final_summary_textrank }}</p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="page-footer grey darken-4">
     <div class="container" id="aboutapp">
       <div class="row">
         <div class="col l6 s12">
           <h5 class="white-text">关于此网站</h5>
           <p class="grey-text text-lighten-4">使用Bert,Transformer进行新闻文本摘要
-.</p> </div>
-      
-   <div class="col l3 s12">
+            .</p>
+        </div>
+
+        <div class="col l3 s12">
           <h5 class="white-text">联系我</h5>
           <ul>
             <!-- <a href="https://facebook.com/jcharistech" target="_blank" class="white-text">
@@ -198,16 +219,16 @@
           <a href="https://www.youtube.com/channel/UC2wMHF4HBkTMGLsvZAIWzRg" target="_blank" class="white-text">
             <i class="fab fa-youtube-square fa-4x"></i>
           </a> -->
-           <a href="https://github.com/zhaotl4" target="_blank" class="white-text">
-            <i class="fab fa-github-square fa-4x"></i>
-          </a>
+            <a href="https://github.com/zhaotl4" target="_blank" class="white-text">
+              <i class="fab fa-github-square fa-4x"></i>
+            </a>
           </ul>
         </div>
       </div>
     </div>
     <div class="footer-copyright">
       <div class="container">
-      Made by <a class="white-text text-lighten-3" href="https://jcharistech.wordpress.com">zhaotl</a><br/>
+        Made by <a class="white-text text-lighten-3" href="https://jcharistech.wordpress.com">zhaotl</a><br />
       </div>
     </div>
   </footer>
@@ -217,6 +238,7 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="static/js/materialize.js"></script>
   <script src="static/js/init.js"></script>
-<!-- Jesse JCharis -->
-  </body>
+  <!-- Jesse JCharis -->
+</body>
+
 </html>
