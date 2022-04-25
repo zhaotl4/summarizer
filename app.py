@@ -112,8 +112,6 @@ def comparer():
         #time_saved_textrank=final_reading_time-summary_reading_time_textrank
         len_textrank=sumlen(final_summary_textrank)
         
-        end = time.time()
-        final_time = end-start
 
         # PreSum abs 
         clean_text = rawtext.replace('\n', '').replace('\r', '') # 清楚空格和换行
@@ -136,7 +134,10 @@ def comparer():
         tfidf_summary = tfidf_summ()
         summary_reading_time_tfidf = readingTime(tfidf_summary)
         len_sum_tfidf = sumlen(tfidf_summary)
-
+        
+        end  = time.time()
+        final_time = end-start
+        
     return render_template('compare_summary.html',ctext=rawtext,final_summary_spacy=bert_summary,final_summary_nltk=tfidf_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time,summary_reading_time_nltk=summary_reading_time_tfidf,final_summary_sumbasic=PreSum_abs,summary_reading_time_sumbasic=summary_reading_time_presum_abs,final_summary_textrank=final_summary_textrank,summary_reading_time_textrank=summary_reading_time_textrank,len_summ=len_sum_bert,len_nltk=len_sum_tfidf,len_sumbasic=len_presum_abs,len_textrank=len_textrank)
 
 

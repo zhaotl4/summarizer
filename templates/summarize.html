@@ -61,7 +61,9 @@
           <div class="icon-block">
             <h2 style="color:black;font-style: normal;" class="center brown-text"><i class="material-icons">Upload your text</i></h2>
            <form method="POST" action="/analyze">
-         <textarea name="rawtext" cols="100" rows="10" class="form-control" required="true" placeholder="Enter Text Here" ></textarea>
+         <!-- <textarea name="rawtext" cols="100" rows="10" class="form-control" required="true" placeholder="Enter Text Here" ></textarea> -->
+          <textarea id="textarea1" name="rawtext" class="materialize-textarea"></textarea>
+          <label for="textarea1">请输入新闻文本</label>
          <!--<div id="textarea" contenteditable name="rawtext" cols="16" rows="7" class="form-control" required="true" placeholder="Enter Text Here" >
   
           <img contenteditable="false" src="{{url_for('static', filename='images/upload.png')}}" width="120" height="100"/>
