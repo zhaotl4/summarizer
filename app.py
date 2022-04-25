@@ -62,6 +62,12 @@ def _save_str2doc_bert(text):
 def index():
     return render_template('index.html')
 
+@app.route('/visual_process',methods=['GET','POST'])
+def visual_process():
+    if request.method == 'POST':
+        visual_input = request.form['content']
+        print(visual_input)
+    return render_template('head_view_v2.html',ctext=visual_input)
 
 @app.route('/analyze',methods=['GET','POST'])
 def analyze():
@@ -93,6 +99,9 @@ def analyze_url():
         final_time = end-start
     return render_template('index.html',ctext=rawtext,final_summary=final_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time)
 
+@app.route('/head_view_v2')
+def head_view_v2():
+    return render_template('head_view_v2.html')
 
 
 @app.route('/compare_summary')
