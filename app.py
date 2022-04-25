@@ -31,7 +31,7 @@ def sumy_summary(docx):
     return result
 
 
-# Reading Time
+# 读取时间
 def readingTime(mytext):
     total_words = len([ token.text for token in nlp(mytext)])
     estimatedTime = total_words/200.0
@@ -43,7 +43,7 @@ def get_text(url):
     soup = BeautifulSoup(page)
     fetched_text = ' '.join(map(lambda p:p.text,soup.find_all('p')))
     return fetched_text
-#summary length
+#摘要长度
 def sumlen(summ):
     res = len(re.findall(r'\w+', summ)) 
     return res

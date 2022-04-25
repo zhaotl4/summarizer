@@ -19,7 +19,7 @@
       <div class="inner">
         <a href="{{url_for('home')}}" class="logo"><img src="{{url_for('static', filename='images/logo.png')}}" style="width:64px;height:64px;" >extractive text summarizer</a>
         <nav id="nav">
-          <a href="{{url_for('home')}}">Home</a>
+          <a href="{{url_for('home')}}">新闻摘要</a>
           <a href="{{url_for('summary')}}">summarize</a>
           <a href="{{url_for('compare_summary')}}">Compare</a>
         </nav>
@@ -118,10 +118,10 @@
         <div class="col s12 m6">
           <div class="icon-block">
             <h2 class="center brown-text"></h2>
-            <h5 class="center" style="color:black;font-style:normal;">Your Text</h5>
-             <p>Reading Time: <span style="color:#0091EA;">{{ final_reading_time }}secs  </span></p>
+            <h5 class="center" style="color:black;font-style:normal;">原始文本</h5>
+             <p>读取时间: <span style="color:#0091EA;">{{ final_reading_time }}secs  </span></p>
             <p class="light">{{ctext}}</p>
-          <!--  <div class="alert alert-info" role="alert"><p>Time Elapsed: <span style="color:#0091EA;">{{ final_time }} mins </span></p><br/>
+          <!--  <div class="alert alert-info" role="alert"><p>耗费时间: <span style="color:#0091EA;">{{ final_time }} mins </span></p><br/>
              
         </div>-->
           </div>
@@ -130,9 +130,9 @@
         <div class="col s12 m6 grey darken-3">
           <div class="icon-block">
             <h2 class="center brown-text"></h2>
-            <h5 class="center" style="color: black;font-style: normal;">Summarized</h5>
+            <h5 class="center" style="color: black;font-style: normal;">生成摘要</h5>
               <div class="" role="alert">
-              <p>Reading Time: <span style="color:#0091EA;">{{ summary_reading_time }}secs  </span></p>
+              <p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time }}secs  </span></p>
         </div>
             <p class="light">{{ final_summary }}</p>
           
