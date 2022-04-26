@@ -15,6 +15,8 @@
 </head>
 </head>
 
+<script src="static/js/echarts.min.js"></script>
+
 <body>
   <div class="navbar-fixed">
     <nav class="fafafa grey lighten-5" role="navigation">
@@ -40,7 +42,7 @@
     <li><a href="#contactme">此网站</a></li>
   </ul>
 
-  
+
   <!--Slider -->
   <div class="slider">
     <ul class="slides">
@@ -74,6 +76,169 @@
       </li>
     </ul>
   </div>
+
+  <section class="section section-solutions-about ">
+    <div class="container white-text">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m12">
+          <div class="icon-block">
+            <!-- <h2 class="center brown-text"><i class="material-icons">spaces</i></h2> -->
+            <h3 class="center"><span style="color:#000000;">数据集展示</span></h5>
+
+            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+            <div id="main" style="width: 1000px;height:400px;"></div>
+            <script type="text/javascript">
+              // 基于准备好的dom，初始化echarts实例
+              var myChart = echarts.init(document.getElementById('main'));
+
+              option = {
+                legend: {//标注位置
+                  orient: 'vertical',
+                  x: 'right',
+                  y: 'center'
+                },
+                tooltip: {},//提示线
+                dataset: {//数据设置
+                  source: [
+                    ['product', 'CNN+DM', 'NYT'],
+                    ['平均新闻长度', 760, 653],
+                    ['平均摘要长度', 34, 30],
+                    ['标准摘要中的新二元组', 53, 52],
+                  ]
+                },
+                xAxis: {//X轴的设置
+                  type: 'category',//不连续的字符串
+                  axisLine: {// X轴样式设置
+                    lineStyle: {
+                      type: 'solid',
+                      color: '#708090',//线的颜色
+                      width: '1'//坐标线的宽度
+                    }
+                  },
+                },
+                yAxis: {//Y轴的设置
+                  show: false
+                },
+                series: [//每个形状的设置
+                  {
+                    type: 'bar',//柱状
+                    barWidth: '50px',// 每簇之间的距离
+                    color: '#6495ED',//柱状的颜色
+                    label: {//提示的设置
+                      normal: {
+                        show: true,
+                        position: 'top'
+                      }
+                    },
+
+                  },
+                  {
+                    type: 'bar',
+                    color: '#CD5C5C',
+                    barWidth: '50px',
+                    barGap: '0%',//每簇中的每个柱状的距离 String形式
+                    label: {
+                      normal: {
+                        show: true,
+                        position: 'top'
+                      }
+                    },
+                  }
+
+                ]
+              };
+
+
+              // 使用刚指定的配置项和数据显示图表。
+              myChart.setOption(option);
+
+            </script>
+          </div>
+
+          <div class="col s12 m6">
+            <div class="icon-block">
+              <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+              <h5 class="center"><span style="color:#0091EA;">原始文本</span></h5>
+
+              <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+              <div id="main2" style="width: 600px;height:400px;"></div>
+              <script type="text/javascript">
+                // 基于准备好的dom，初始化echarts实例
+                var myChart2 = echarts.init(document.getElementById('main2'));
+
+                option2 = {
+                  legend: {//标注位置
+                    orient: 'vertical',
+                    x: 'right',
+                    y: 'center'
+                  },
+                  tooltip: {},//提示线
+                  dataset: {//数据设置
+                    source: [
+                      ['product', '2018Q3', '2018Q4'],
+                      ['总资产', 1573, 1607],
+                      ['净资产', 324, 354],
+                      ['核心资产', 338, 348],
+                    ]
+                  },
+                  xAxis: {//X轴的设置
+                    type: 'category',//不连续的字符串
+                    axisLine: {// X轴样式设置
+                      lineStyle: {
+                        type: 'solid',
+                        color: '#708090',//线的颜色
+                        width: '1'//坐标线的宽度
+                      }
+                    },
+                  },
+                  yAxis: {//Y轴的设置
+                    show: false
+                  },
+                  series: [//每个形状的设置
+                    {
+                      type: 'bar',//柱状
+                      barWidth: '50px',// 每簇之间的距离
+                      color: '#6495ED',//柱状的颜色
+                      label: {//提示的设置
+                        normal: {
+                          show: true,
+                          position: 'top'
+                        }
+                      },
+
+                    },
+                    {
+                      type: 'bar',
+                      color: '#CD5C5C',
+                      barWidth: '50px',
+                      barGap: '0%',//每簇中的每个柱状的距离 String形式
+                      label: {
+                        normal: {
+                          show: true,
+                          position: 'top'
+                        }
+                      },
+                    }
+
+                  ]
+                };
+
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart2.setOption(option2);
+
+              </script>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+  </section>
+
 
   <!-- Start of Main Section -->
   <div class="container">
@@ -138,10 +303,10 @@
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">group</i></h2>
             <h5 class="center">原始文本</h5>
-            <p>读取时间: <span style="color:#0091EA;">{{ final_reading_time }} min </span></p>
+            <p>读取时间: <span style="color:#0091EA;">{{ 11 }} min </span></p>
             <p class="light">{{ctext}}</p>
             <div class="alert alert-info" role="alert">
-              <p>耗费时间: <span style="color:#0091EA;">{{ final_time }} mins </span></p><br />
+              <p>耗费时间: <span style="color:#068de0;">{{ final_time }} mins </span></p><br />
 
             </div>
           </div>
@@ -209,6 +374,7 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="static/js/materialize.js"></script>
   <script src="static/js/init.js"></script>
+  <!-- <script src="static/js/echarts.min.js"></script> -->
   <!-- Jesse JCharis -->
 </body>
 
