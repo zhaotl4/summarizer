@@ -21,6 +21,8 @@ from sumy.summarizers.lex_rank import LexRankSummarizer
 
 from presum_abs import presum_abs_summ
 from pacsum_summary import bert_summ,tfidf_summ
+from transformers import AutoTokenizer, AutoModel, utils
+from bertviz import head_view
 # Sumy 
 def sumy_summary(docx):
     parser = PlaintextParser.from_string(docx,Tokenizer("english"))
@@ -67,6 +69,21 @@ def visual_process():
     if request.method == 'POST':
         visual_input = request.form['content']
         print(visual_input)
+
+        # utils.logging.set_verbosity_error()  # Suppress standard warnings
+        # tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+        # model = AutoModel.from_pretrained("bert-base-uncased", output_attentions=True)
+
+        # inputs = tokenizer.encode(visual_input, return_tensors='pt')
+        # outputs = model(inputs)
+        # attention = outputs[-1]  # Output includes attention weights when output_attentions=True
+        # tokens = tokenizer.convert_ids_to_tokens(inputs[0]) 
+
+        # html_head_view = head_view(attention, tokens, html_action='return')
+
+        # with open("../templates/head_view_v2.html", 'w') as file:
+        #     file.write(html_head_view.data)
+
     return render_template('head_view_v2.html',ctext=visual_input)
 
 @app.route('/analyze',methods=['GET','POST'])
@@ -103,6 +120,9 @@ def analyze_url():
 def head_view_v2():
     return render_template('head_view_v2.html')
 
+@app.route('/result')
+def result():
+    return render_template('result.html')
 
 @app.route('/compare_summary')
 def compare_summary():

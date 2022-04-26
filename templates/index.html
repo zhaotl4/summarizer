@@ -23,7 +23,7 @@
         <ul class="right hide-on-med-and-down">
           <li><a href="{{url_for('index')}}">新闻摘要</a></li>
           <li><a href="{{url_for('compare_summary')}}">模型比较</a></li>
-          <li><a href="{{url_for('index')}}">实验结果</a></li>
+          <li><a href="{{url_for('result')}}">实验结果</a></li>
           <!-- <li><a href="#aboutapp">此网站</a></li> -->
           <li><a href="{{url_for('head_view_v2')}}">可视化</a></li>
           <!-- <li><a href="{{url_for('index')}}">实验结果</a></li> -->
@@ -86,6 +86,17 @@
               <textarea id="textarea1" name="rawtext" class="materialize-textarea"></textarea>
               <label for="textarea1">请输入新闻文本</label>
               <br />
+
+              <!-- <div class="input-field col s12">
+                <select multiple>
+                  <option value="" disabled selected>Choose your option</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
+                <label>Materialize Multiple Select</label>
+              </div> -->
+
               <button class="btn btn-small waves-effect waves-light light-blue lighten-1" type="reset">清除</button>
               <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">摘要</button>
 
