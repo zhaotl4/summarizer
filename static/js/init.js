@@ -25,3 +25,7 @@
   $('.slider').slider();
 });
   
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+    

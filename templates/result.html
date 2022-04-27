@@ -97,65 +97,44 @@
               <script type="text/javascript">
                 // 基于准备好的dom，初始化echarts实例
                 var myChart = echarts.init(document.getElementById('main'));
-
                 option = {
-                  legend: {//标注位置
-                    orient: 'vertical',
-                    x: 'right',
-                    y: 'center'
+                  title: {
+                    text: 'World Population'
                   },
-                  tooltip: {},//提示线
-                  dataset: {//数据设置
-                    source: [
-                      ['product', 'CNN+DM', 'NYT'],
-                      ['平均新闻长度', 760, 653],
-                      ['平均摘要长度', 34, 30],
-                      ['标准摘要中的新二元组', 53, 52],
-                    ]
-                  },
-                  xAxis: {//X轴的设置
-                    type: 'category',//不连续的字符串
-                    axisLine: {// X轴样式设置
-                      lineStyle: {
-                        type: 'solid',
-                        color: '#708090',//线的颜色
-                        width: '1'//坐标线的宽度
-                      }
-                    },
-                  },
-                  yAxis: {//Y轴的设置
-                    show: false
-                  },
-                  series: [//每个形状的设置
-                    {
-                      type: 'bar',//柱状
-                      barWidth: '50px',// 每簇之间的距离
-                      color: '#6495ED',//柱状的颜色
-                      label: {//提示的设置
-                        normal: {
-                          show: true,
-                          position: 'top'
-                        }
-                      },
-
-                    },
-                    {
-                      type: 'bar',
-                      color: '#CD5C5C',
-                      barWidth: '50px',
-                      barGap: '0%',//每簇中的每个柱状的距离 String形式
-                      label: {
-                        normal: {
-                          show: true,
-                          position: 'top'
-                        }
-                      },
+                  tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                      type: 'shadow'
                     }
-
+                  },
+                  legend: {},
+                  grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                  },
+                  xAxis: {
+                    type: 'value',
+                    boundaryGap: [0, 0.01]
+                  },
+                  yAxis: {
+                    type: 'category',
+                    data: ['新闻字数', '新闻句字数', '摘要字数', '摘要句字数', '全新二元组']
+                  },
+                  series: [
+                    {
+                      name: 'CNN+DM',
+                      type: 'bar',
+                      data: [760, 34, 45.7, 3.6, 53]
+                    },
+                    {
+                      name: 'NYT',
+                      type: 'bar',
+                      data: [800, 35, 45, 2.4, 55]
+                    }
                   ]
                 };
-
-
                 // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
 
@@ -168,149 +147,230 @@
 
     </div>
   </section>
+  <br />
+  <br />
+  <br />
+  <br />
 
   <h3 class="center"><span style="color:#000000;">算法展示</span></h5>
+    <br />
+    <br />
+    <br />
+    <br />
+
     <div class="slider">
       <ul class="slides">
         <li>
-          <img src="../static/images/pic01.jpg"> <!-- random image -->
-          <div class="caption center-align">
-            <h3>This is our big Tagline!</h3>
-            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-          </div>
+          <img width="400" height="200" src="../static/images/text-rank-graph-jazz.webp">
         </li>
         <li>
-          <img src="../static/images/pic05.jpg"> <!-- random image -->
-          <div class="caption left-align">
-            <h3>Left Aligned Caption</h3>
-            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-          </div>
+          <img width="300" height="500" src="../static/images/enc_dec.png">
         </li>
         <li>
-          <img src="../static/images/pic06.jpg"> <!-- random image -->
-          <div class="caption right-align">
-            <h3>Right Aligned Caption</h3>
-            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-          </div>
+          <img width="100%" height="80%" src="../static/images/transformer.png">
         </li>
         <li>
-          <img src="../static/images/pic07.jpg"> <!-- random image -->
-          <div class="caption center-align">
-            <h3>This is our big Tagline!</h3>
-            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-          </div>
+          <img width="100%" height="100%" src="../static/images/TextRank.png">
         </li>
       </ul>
     </div>
 
+    <br />
+    <br />
+    <br />
+    <br />
+    <h3 class="center"><span style="color:#000000;">结果展示</span></h5>
+      <br />
+      <br />
+      <br />
+      <br />
+      <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header"><i class="material-icons">filter_drama</i>CNN+DM实验结果</div>
+          <div class="collapsible-body">
+            <div class="row">
+              <div class="col">
+                <div class="icon-block">
+                  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                  <div id="main2" style="width:800px;height:400px;"></div>
+                  <script type="text/javascript">
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart2 = echarts.init(document.getElementById('main2'));
+                    option2 = {
+                      tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                          type: 'shadow'
+                        }
+                      },
+                      legend: {},
+                      grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                      },
+                      xAxis: {
+                        type: 'value',
+                        boundaryGap: [0, 0.01]
+                      },
+                      yAxis: {
+                        type: 'category',
+                        data: ['ROUGE-L', 'ROUGE-2', 'ROUGE-1']
+                      },
+                      series: [
+                        {
+                          name: 'PacSum with tfidf',
+                          type: 'bar',
+                          data: [35.3, 16.3, 39.2]
+                        },
+                        {
+                          name: 'PacSum with Bert',
+                          type: 'bar',
+                          data: [36.9, 17.8, 40.7]
+                        },
+                        {
+                          name: 'PreSum',
+                          type: 'bar',
+                          data: [39.18, 19.60, 42.13]
+                        },
+                        {
+                          name: 'SOTA',
+                          type: 'bar',
+                          data: [100, 100, 100]
+                        }
+                      ]
+                    };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart2.setOption(option2);
 
-    <!-- Start of Main Section -->
-    <div class="container">
-      <div class="section">
-
-        <!--   Icon Section   -->
-        <div class="row">
-          <div class="input-field col s12 m10">
-            <div class="icon-block">
-              <h2 class="center brown-text"><i class="material-icons">chrome_reader_mode</i></h2>
-              <form method="POST" action="/analyze">
-                <!-- <textarea name="rawtext"  class="form-control" required="true" placeholder="Enter Text Here"></textarea> -->
-                <textarea id="textarea1" name="rawtext" class="materialize-textarea"></textarea>
-                <label for="textarea1">请输入新闻文本</label>
-                <br />
-
-                <!-- <div class="input-field col s12">
-                <select multiple>
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
-                </select>
-                <label>Materialize Multiple Select</label>
-              </div> -->
-
-                <button class="btn btn-small waves-effect waves-light light-blue lighten-1" type="reset">清除</button>
-                <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">摘要</button>
-
-              </form>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- <div class="row">
-        <div class="input-field col s12 m10">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">chrome_reader_mode</i></h2>
-           <form method="POST" action="/analyze_url">
-         <input type="text" name="raw_url" placeholder="Enter URL Here" required="true">
-         <button class="btn btn-small waves-effect waves-light light-blue lighten-1" type="reset">Clear</button>
-          <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">Summarize</button>
-          
-        </form>
-          </div>
-        </div>
-
-      </div> -->
-
-      </div>
-    </div>
-    <!-- End -->
-
-    <!-- Result Display-->
-    <section class="section section-solutions-about grey darken-2">
-      <div class="container white-text">
-
-        <!--   Icon Section   -->
-        <div class="row">
-          <div class="col s12 m6">
-            <div class="icon-block">
-              <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-              <h5 class="center">原始文本</h5>
-              <p>读取时间: <span style="color:#0091EA;">{{ 11 }} min </span></p>
-              <p class="light">{{ctext}}</p>
-              <div class="alert alert-info" role="alert">
-                <p>耗费时间: <span style="color:#068de0;">{{ final_time }} mins </span></p><br />
-
+                  </script>
+                </div>
               </div>
             </div>
           </div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">place</i>NYT实验结果</div>
+          <div class="collapsible-body">
+            <div class="row">
+              <div class="col">
+                <div class="icon-block">
+                  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                  <div id="main3" style="width:800px;height:400px;"></div>
+                  <script type="text/javascript">
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart3 = echarts.init(document.getElementById('main3'));
+                    option3 = {
+                      tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                          type: 'shadow'
+                        }
+                      },
+                      legend: {},
+                      grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                      },
+                      xAxis: {
+                        type: 'value',
+                        boundaryGap: [0, 0.01]
+                      },
+                      yAxis: {
+                        type: 'category',
+                        data: ['ROUGE-L', 'ROUGE-2', 'ROUGE-1']
+                      },
+                      series: [
+                        {
+                          name: 'PacSum with tfidf',
+                          type: 'bar',
+                          data: [36.4, 20.6, 40.4]
+                        },
+                        {
+                          name: 'PacSum with Bert',
+                          type: 'bar',
+                          data: [37.5, 21.7, 41.4]
+                        },
+                        {
+                          name: 'PreSum',
+                          type: 'bar',
+                          data: [45.55, 31.02, 49.02]
+                        },
+                        {
+                          name: 'SOTA',
+                          type: 'bar',
+                          data: [100, 100, 100]
+                        }
+                      ]
+                    };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart3.setOption(option3);
 
-          <div class="col s12 m6 grey darken-3">
-            <div class="icon-block">
-              <h2 class="center brown-text"><i class="material-icons">chrome_reader_mode</i></h2>
-              <h5 class="center">生成摘要</h5>
-              <div class="" role="alert">
-                <p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time }} min </span></p>
+                  </script>
+                </div>
               </div>
-              <p class="light">{{ final_summary }}</p>
-
             </div>
+        </li>
+      </ul>
+
+
+      <!-- Result Display-->
+      <section class="section section-solutions-about grey darken-2">
+        <div class="container white-text">
+
+          <!--   Icon Section   -->
+          <div class="row">
+            <div class="col s12 m6">
+              <div class="icon-block">
+                <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+                <h5 class="center">原始文本</h5>
+                <p>读取时间: <span style="color:#0091EA;">{{ 11 }} min </span></p>
+                <p class="light">{{ctext}}</p>
+                <div class="alert alert-info" role="alert">
+                  <p>耗费时间: <span style="color:#068de0;">{{ final_time }} mins </span></p><br />
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col s12 m6 grey darken-3">
+              <div class="icon-block">
+                <h2 class="center brown-text"><i class="material-icons">chrome_reader_mode</i></h2>
+                <h5 class="center">生成摘要</h5>
+                <div class="" role="alert">
+                  <p>读取时间: <span style="color:#0091EA;">{{ summary_reading_time }} min </span></p>
+                </div>
+                <p class="light">{{ final_summary }}</p>
+
+              </div>
+            </div>
+
           </div>
+
 
         </div>
-
-
-      </div>
-    </section>
+      </section>
 
 
 
-    <footer class="page-footer grey darken-4">
-      <div class="container" id="aboutapp">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5 class="white-text">关于此网站</h5>
-            <p class="grey-text text-lighten-4">使用Bert,Transformer进行新闻文本摘要
-              .</p>
+      <footer class="page-footer grey darken-4">
+        <div class="container" id="aboutapp">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">关于此网站</h5>
+              <p class="grey-text text-lighten-4">使用Bert,Transformer进行新闻文本摘要
+                .</p>
 
 
-          </div>
+            </div>
 
-          <div class="col l3 s12">
-            <h5 class="white-text">联系我</h5>
-            <ul>
-              <!-- <a href="https://facebook.com/jcharistech" target="_blank" class="white-text">
+            <div class="col l3 s12">
+              <h5 class="white-text">联系我</h5>
+              <ul>
+                <!-- <a href="https://facebook.com/jcharistech" target="_blank" class="white-text">
             <i class="fab fa-facebook fa-4x"></i>
           </a>
           <a href="https://gh.linkedin.com/in/jesiel-emmanuel-agbemabiase-6935b690" target="_blank" class="white-text">
@@ -319,27 +379,27 @@
           <a href="https://www.youtube.com/channel/UC2wMHF4HBkTMGLsvZAIWzRg" target="_blank" class="white-text">
             <i class="fab fa-youtube-square fa-4x"></i>
           </a> -->
-              <a href="https://github.com/zhaotl4" target="_blank" class="white-text">
-                <i class="fab fa-github-square fa-4x"></i>
-              </a>
-            </ul>
+                <a href="https://github.com/zhaotl4" target="_blank" class="white-text">
+                  <i class="fab fa-github-square fa-4x"></i>
+                </a>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-          Made by <a class="white-text text-lighten-3" href="https://jcharistech.wordpress.com">zhaotl</a><br />
+        <div class="footer-copyright">
+          <div class="container">
+            Made by <a class="white-text text-lighten-3" href="https://jcharistech.wordpress.com">zhaotl</a><br />
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
 
 
-    <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="static/js/materialize.js"></script>
-    <script src="static/js/init.js"></script>
-    <!-- <script src="static/js/echarts.min.js"></script> -->
-    <!-- Jesse JCharis -->
+      <!--  Scripts-->
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="static/js/materialize.js"></script>
+      <script src="static/js/init.js"></script>
+      <!-- <script src="static/js/echarts.min.js"></script> -->
+      <!-- Jesse JCharis -->
 </body>
 
 </html>
