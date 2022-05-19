@@ -1,2 +1,4 @@
 *.py[doc]
 *.txt
+bert_visual.py
+/templates/head_view.html
