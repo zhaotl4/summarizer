@@ -1,11 +1,12 @@
 from __future__ import unicode_literals
-from flask import Flask,render_template,url_for,request
+from flask import Flask, render_template, url_for, request
 
 from sumbasic_summ import main
 from textrank import textranksumm
 import time
 import spacy
 import re
+
 nlp = spacy.load('en_core_web_sm')
 app = Flask(__name__)
 
@@ -20,14 +21,16 @@ from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
 
 from presum_abs import presum_abs_summ
-from pacsum_summary import bert_summ,tfidf_summ
+from pacsum_summary import bert_summ, tfidf_summ
 from transformers import AutoTokenizer, AutoModel, utils
 from bertviz import head_view
-# Sumy 
+
+
+# Sumy
 def sumy_summary(docx):
-    parser = PlaintextParser.from_string(docx,Tokenizer("english"))
+    parser = PlaintextParser.from_string(docx, Tokenizer("english"))
     lex_summarizer = LexRankSummarizer()
-    summary = lex_summarizer(parser.document,3)
+    summary = lex_summarizer(parser.document, 3)
     summary_list = [str(sentence) for sentence in summary]
     result = ' '.join(summary_list)
     return result
@@ -35,36 +38,42 @@ def sumy_summary(docx):
 
 # 读取时间
 def readingTime(mytext):
-    total_words = len([ token.text for token in nlp(mytext)])
-    estimatedTime = total_words/200.0
+    total_words = len([token.text for token in nlp(mytext)])
+    estimatedTime = total_words / 200.0
     return estimatedTime
+
 
 # Fetch Text From Url
 def get_text(url):
     page = urlopen(url)
     soup = BeautifulSoup(page)
-    fetched_text = ' '.join(map(lambda p:p.text,soup.find_all('p')))
+    fetched_text = ' '.join(map(lambda p: p.text, soup.find_all('p')))
     return fetched_text
+
+
 #摘要长度
 def sumlen(summ):
-    res = len(re.findall(r'\w+', summ)) 
+    res = len(re.findall(r'\w+', summ))
     return res
 
+
 def _save_str2doc_bert(text):
-        text = text.replace('\n', '').replace('\r', '')
-        article = text.split('.')
-        if len(article[-1])==0:
-            article.pop()
-        with open('pacsum_read.txt','w') as f:
-            for item in article:
-                f.write(item+'\n')
-        f.close()
+    text = text.replace('\n', '').replace('\r', '')
+    article = text.split('.')
+    if len(article[-1]) == 0:
+        article.pop()
+    with open('pacsum_read.txt', 'w') as f:
+        for item in article:
+            f.write(item + '\n')
+    f.close()
+
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/visual_process',methods=['GET','POST'])
+
+@app.route('/visual_process', methods=['GET', 'POST'])
 def visual_process():
     if request.method == 'POST':
         visual_input = request.form['content']
@@ -77,33 +86,40 @@ def visual_process():
         # inputs = tokenizer.encode(visual_input, return_tensors='pt')
         # outputs = model(inputs)
         # attention = outputs[-1]  # Output includes attention weights when output_attentions=True
-        # tokens = tokenizer.convert_ids_to_tokens(inputs[0]) 
+        # tokens = tokenizer.convert_ids_to_tokens(inputs[0])
 
         # html_head_view = head_view(attention, tokens, html_action='return')
 
         # with open("../templates/head_view_v2.html", 'w') as file:
         #     file.write(html_head_view.data)
 
-    return render_template('head_view_v2.html',ctext=visual_input)
+    return render_template('head_view_v2.html', ctext=visual_input)
 
-@app.route('/analyze',methods=['GET','POST'])
+
+@app.route('/analyze', methods=['GET', 'POST'])
 def analyze():
     start = time.time()
     if request.method == 'POST':
         rawtext = request.form['rawtext']
-        final_summary=textranksumm(rawtext) 
-        summary_reading_time=readingTime(final_summary)
-        len_textrank=sumlen(final_summary)
-        
+        final_summary = textranksumm(rawtext)
+        summary_reading_time = readingTime(final_summary)
+        len_textrank = sumlen(final_summary)
+
         end = time.time()
-        final_time = end-start
+        final_time = end - start
         final_reading_time = readingTime(rawtext)
 
         _save_str2doc_bert(rawtext)
-        
-    return render_template('index.html',ctext=rawtext,final_summary=final_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time)
 
-@app.route('/analyze_url',methods=['GET','POST'])
+    return render_template('index.html',
+                           ctext=rawtext,
+                           final_summary=final_summary,
+                           final_time=final_time,
+                           final_reading_time=final_reading_time,
+                           summary_reading_time=summary_reading_time)
+
+
+@app.route('/analyze_url', methods=['GET', 'POST'])
 def analyze_url():
     start = time.time()
     if request.method == 'POST':
@@ -113,22 +129,31 @@ def analyze_url():
         final_summary = main(rawtext)
         summary_reading_time = readingTime(final_summary)
         end = time.time()
-        final_time = end-start
-    return render_template('index.html',ctext=rawtext,final_summary=final_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time)
+        final_time = end - start
+    return render_template('index.html',
+                           ctext=rawtext,
+                           final_summary=final_summary,
+                           final_time=final_time,
+                           final_reading_time=final_reading_time,
+                           summary_reading_time=summary_reading_time)
+
 
 @app.route('/head_view_v2')
 def head_view_v2():
     return render_template('head_view_v2.html')
 
+
 @app.route('/result')
 def result():
     return render_template('result.html')
+
 
 @app.route('/compare_summary')
 def compare_summary():
     return render_template('compare_summary.html')
 
-@app.route('/comparer',methods=['GET','POST'])
+
+@app.route('/comparer', methods=['GET', 'POST'])
 def comparer():
     start = time.time()
     if request.method == 'POST':
@@ -137,24 +162,25 @@ def comparer():
 
         #textrank
         textrank_start = time.time()
-        final_summary_textrank=textranksumm(rawtext) 
+        final_summary_textrank = textranksumm(rawtext)
         textrank_end = time.time()
-        summary_reading_time_textrank= int( (textrank_end - textrank_start)* 1000) / 1000
+        summary_reading_time_textrank = int(
+            (textrank_end - textrank_start) * 1000) / 1000
         # summary_reading_time_textrank=readingTime(final_summary_textrank)
         #time_saved_textrank=final_reading_time-summary_reading_time_textrank
-        len_textrank=sumlen(final_summary_textrank)
-        
+        len_textrank = sumlen(final_summary_textrank)
 
-        # PreSum abs 
+        # PreSum abs
         PreSum_start = time.time()
-        clean_text = rawtext.replace('\n', '').replace('\r', '') # 清楚空格和换行
-        file = open('/home/ztl/nlp/PreSumm/raw_data/temp.raw_src','w')
+        clean_text = rawtext.replace('\n', '').replace('\r', '')  # 清楚空格和换行
+        file = open('/home/ztl/nlp/PreSumm/raw_data/temp.raw_src', 'w')
         file.write(clean_text)
         print(clean_text)
         file.close()
-        PreSum_abs = presum_abs_summ().replace('<q>',',')
+        PreSum_abs = presum_abs_summ().replace('<q>', ',')
         PreSum_end = time.time()
-        summary_reading_time_presum_abs = int((PreSum_end - PreSum_start)*1000)/1000
+        summary_reading_time_presum_abs = int(
+            (PreSum_end - PreSum_start) * 1000) / 1000
         # summary_reading_time_presum_abs = readingTime(PreSum_abs)
         len_presum_abs = sumlen(PreSum_abs)
         # print(PreSum_abs)
@@ -164,7 +190,8 @@ def comparer():
         _save_str2doc_bert(rawtext)
         bert_summary = bert_summ()
         bert_pac_end = time.time()
-        summary_reading_time = int((bert_pac_end - bert_pac_begin)*1000)/1000
+        summary_reading_time = int(
+            (bert_pac_end - bert_pac_begin) * 1000) / 1000
         # summary_reading_time = readingTime(bert_summary)
         len_sum_bert = sumlen(bert_summary)
 
@@ -172,20 +199,37 @@ def comparer():
         tfidf_begin = time.time()
         tfidf_summary = tfidf_summ()
         tfidf_end = time.time()
-        summary_reading_time_tfidf = int((tfidf_end - tfidf_begin)*1000)/1000
+        summary_reading_time_tfidf = int(
+            (tfidf_end - tfidf_begin) * 1000) / 1000
         # summary_reading_time_tfidf = readingTime(tfidf_summary)
         len_sum_tfidf = sumlen(tfidf_summary)
-        
-        end  = time.time()
-        final_time = end-start
-        
-    return render_template('compare_summary.html',ctext=rawtext,final_summary_spacy=bert_summary,final_summary_nltk=tfidf_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time,summary_reading_time_nltk=summary_reading_time_tfidf,final_summary_sumbasic=PreSum_abs,summary_reading_time_sumbasic=summary_reading_time_presum_abs,final_summary_textrank=final_summary_textrank,summary_reading_time_textrank=summary_reading_time_textrank,len_summ=len_sum_bert,len_nltk=len_sum_tfidf,len_sumbasic=len_presum_abs,len_textrank=len_textrank)
 
+        end = time.time()
+        final_time = end - start
+
+    return render_template(
+        'compare_summary.html',
+        ctext=rawtext,
+        final_summary_spacy=bert_summary,
+        final_summary_nltk=tfidf_summary,
+        final_time=final_time,
+        final_reading_time=final_reading_time,
+        summary_reading_time=summary_reading_time,
+        summary_reading_time_nltk=summary_reading_time_tfidf,
+        final_summary_sumbasic=PreSum_abs,
+        summary_reading_time_sumbasic=summary_reading_time_presum_abs,
+        final_summary_textrank=final_summary_textrank,
+        summary_reading_time_textrank=summary_reading_time_textrank,
+        len_summ=len_sum_bert,
+        len_nltk=len_sum_tfidf,
+        len_sumbasic=len_presum_abs,
+        len_textrank=len_textrank)
 
 
 @app.route('/about')
 def about():
     return render_template('index.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
