@@ -136,32 +136,44 @@ def comparer():
         final_reading_time = readingTime(rawtext)
 
         #textrank
+        textrank_start = time.time()
         final_summary_textrank=textranksumm(rawtext) 
-        summary_reading_time_textrank=readingTime(final_summary_textrank)
+        textrank_end = time.time()
+        summary_reading_time_textrank= int( (textrank_end - textrank_start)* 1000) / 1000
+        # summary_reading_time_textrank=readingTime(final_summary_textrank)
         #time_saved_textrank=final_reading_time-summary_reading_time_textrank
         len_textrank=sumlen(final_summary_textrank)
         
 
         # PreSum abs 
+        PreSum_start = time.time()
         clean_text = rawtext.replace('\n', '').replace('\r', '') # 清楚空格和换行
         file = open('/home/ztl/nlp/PreSumm/raw_data/temp.raw_src','w')
         file.write(clean_text)
         print(clean_text)
         file.close()
         PreSum_abs = presum_abs_summ().replace('<q>',',')
-        summary_reading_time_presum_abs = readingTime(PreSum_abs)
+        PreSum_end = time.time()
+        summary_reading_time_presum_abs = int((PreSum_end - PreSum_start)*1000)/1000
+        # summary_reading_time_presum_abs = readingTime(PreSum_abs)
         len_presum_abs = sumlen(PreSum_abs)
         # print(PreSum_abs)
 
         # PacSum with Bert
+        bert_pac_begin = time.time()
         _save_str2doc_bert(rawtext)
         bert_summary = bert_summ()
-        summary_reading_time = readingTime(bert_summary)
+        bert_pac_end = time.time()
+        summary_reading_time = int((bert_pac_end - bert_pac_begin)*1000)/1000
+        # summary_reading_time = readingTime(bert_summary)
         len_sum_bert = sumlen(bert_summary)
 
         # PacSum with tfidf
+        tfidf_begin = time.time()
         tfidf_summary = tfidf_summ()
-        summary_reading_time_tfidf = readingTime(tfidf_summary)
+        tfidf_end = time.time()
+        summary_reading_time_tfidf = int((tfidf_end - tfidf_begin)*1000)/1000
+        # summary_reading_time_tfidf = readingTime(tfidf_summary)
         len_sum_tfidf = sumlen(tfidf_summary)
         
         end  = time.time()
